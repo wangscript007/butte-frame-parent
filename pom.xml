@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.butte.frame</groupId>
+    <artifactId>butte-frame-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!-- 模块管理 -->
+    <modules>
+        <!-- 基础代码块：Base -->
+        <module>frame-base</module>
+        <!-- 数据库组件：MySQL -->
+        <module>frame-jdbc</module>
+        <!-- 微服务组件：Nacos -->
+        <module>frame-nacos</module>
+        <!-- 微服务组件：Seata -->
+        <module>frame-seata</module>
+        <!-- 微服务组件：Feign -->
+        <module>frame-feign</module>
+        <!-- 微服务组件：Gateway -->
+        <module>frame-gateway</module>
+        <!-- 工具组件：Core -->
+        <module>frame-core</module>
+        <!-- 搜索组件：ElasticSearch -->
+        <module>frame-search</module>
+        <!-- 缓存组件：Redis -->
+        <module>frame-redis</module>
+        <!-- 消息组件：Kafka -->
+        <module>frame-kafka</module>
+        <!-- 任务组件：Quartz -->
+        <module>frame-quartz</module>
+        <!-- 接口组件：Swagger -->
+        <module>frame-swagger</module>
+        <!-- 安全管理：Security -->
+        <module>frame-security</module>
+        <!-- 日志链路：Sleuth -->
+        <module>frame-sleuth</module>
+    </modules>
+
+    <!-- 版本管理 -->
+    <properties>
+        <butte.version>1.0-SNAPSHOT</butte.version>
+
+        <!-- 编译管理 -->
+        <compile.jdk.version>1.8</compile.jdk.version>
+        <compile.encoding.version>UTF-8</compile.encoding.version>
+        <lombok.version>1.18.20</lombok.version>
+
+        <!-- 项目编码 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Maven管理 -->
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-source-plugin.version>3.2.0</maven-source-plugin.version>
+        <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+
+        <!-- Spring管理 -->
+        <spring-web.version>5.2.4.RELEASE</spring-web.version>
+        <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
+        <spring-cloud.version>2.2.5.RELEASE</spring-cloud.version>
+        <alibaba-cloud.version>2.2.5.RELEASE</alibaba-cloud.version>
+
+        <security-jwt.version>1.0.10.RELEASE</security-jwt.version>
+
+        <!-- MySQL数据库 -->
+        <mysql.version>8.0.19</mysql.version>
+        <mybatis-plus.version>3.4.2</mybatis-plus.version>
+
+        <!-- Swagger接口 -->
+        <swagger.version>2.6.1</swagger.version>
+
+        <!-- Kafka组件 -->
+        <kafka.version>2.3.6.RELEASE</kafka.version>
+
+        <!-- LogsSash组件 -->
+        <logstash.version>5.2</logstash.version>
+        <logback.version>1.2.4</logback.version>
+
+        <!-- Jackson包 -->
+        <jackson.version>2.12.0</jackson.version>
+
+        <!-- 消息通知 -->
+        <mail.version>1.6.2</mail.version>
+
+        <!-- 集成工具 -->
+        <hutool.version>5.3.1</hutool.version>
+
+        <!-- Apache工具 -->
+        <commons-pool.version>2.7.0</commons-pool.version>
+        <okhttp.version>3.14.9</okhttp.version>
+        <httpclient.version>4.5.1</httpclient.version>
+        <commons-pool2.version>2.7.0</commons-pool2.version>
+        <httpcore.version>4.4.13</httpcore.version>
+
+        <javaee.version>7.0</javaee.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 构建管理 -->
+    <build>
+
+        <!-- 配置文件 -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <pluginManagement>
+            <plugins>
+                <!-- 编译插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${compile.jdk.version}</source>
+                        <target>${compile.jdk.version}</target>
+                    </configuration>
+                </plugin>
+
+                <!-- Javadoc 文档插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                    <configuration>
+                        <source>${compile.jdk.version}</source>
+                        <encoding>${compile.encoding.version}</encoding>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- Sources源码包插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                    <configuration>
+                        <encoding>${compile.encoding.version}</encoding>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+
+    </build>
+</project>
