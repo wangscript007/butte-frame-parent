@@ -1,0 +1,3 @@
+# Configure Loading
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.butte.kafka.config.KafkaConfig
